@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #e0e0e0;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .about-container {
+            background-color: #f0f0f0;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: inset 8px 8px 15px rgba(0, 0, 0, 0.1), 
+                        inset -8px -8px 15px rgba(255, 255, 255, 0.7);
+            max-width: 800px;
+            text-align: center;
+        }
+        .about-container h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .about-container p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .about-container a {
+            color: #333;
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #e0e0e0;
+            border-radius: 25px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1), 
+                        -5px -5px 10px rgba(255, 255, 255, 0.7);
+            transition: background-color 0.3s;
+        }
+        .about-container a:hover {
+            background-color: #d0d0d0;
+        }
+    </style>
+</head>
+<body>
+    <div class="about-container">
+        <h1>About Us</h1>
+        <p>Welcome to the Employee Management System! Our mission is to streamline the process of managing employee records for administrators. We provide functionalities such as adding new employees, viewing existing employee details, updating employee information, and deleting records. With robust validation and authentication mechanisms, we ensure the protection of sensitive employee data.</p>
+        <p>Our team is dedicated to providing a user-friendly and secure system that meets the needs of modern-day employee management. We constantly update our system with the latest features to make your experience as smooth as possible.</p>
+        <a href="{{ url_for('Home') }}">Back to Home</a>
+    </div>
+</body>
+</html>

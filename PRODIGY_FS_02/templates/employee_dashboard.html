@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+   <style>
+ body {
+    font-family: Arial, sans-serif;
+    background-color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.dashboard-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.profile-card {
+    background: #e0e0e0;
+    border-radius: 16px;
+    box-shadow: 8px 8px 16px #bebebe, -8px -8px 16px #ffffff;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 100%;
+    max-width: 400px;
+}
+
+.profile-header {
+    background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    border-radius: 16px 16px 0 0;
+    box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
+}
+
+.profile-header img.profile-picture {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    box-shadow: 4px 4px 8px #bebebe, -4px -4px 8px #ffffff;
+}
+
+.profile-header h2 {
+    margin: 10px 0 5px;
+    font-size: 1.5em;
+}
+
+.profile-info {
+    padding: 20px;
+    border-top: 1px solid #f0f0f0;
+    box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
+    border-radius: 0 0 16px 16px;
+}
+
+.profile-info p {
+    margin: 10px 0;
+    font-size: 1em;
+    color: #555;
+}
+
+.profile-info p strong {
+    color: #333;
+}
+
+.profile-info button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #e0e0e0;
+    color: #555;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 4px 4px 8px #bebebe, -4px -4px 8px #ffffff;
+    cursor: pointer;
+}
+
+.profile-info button:hover {
+    background-color: #e0e0e0;
+    box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
+}
+
+.profile-footer {
+    padding: 20px;
+    border-top: 1px solid #f0f0f0;
+    text-align: center;
+}
+
+.profile-footer a {
+    color: #ff758c;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#edit-form input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-top: 5px;
+    background: #e0e0e0;
+    border: none;
+    border-radius: 8px;
+    box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
+}
+
+#edit-form button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #e0e0e0;
+    color: #555;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 4px 4px 8px #bebebe, -4px -4px 8px #ffffff;
+    cursor: pointer;
+}
+
+#edit-form button:hover {
+    background-color: #e0e0e0;
+    box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
+}
+
+   </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="profile-card">
+            <div class="profile-header">
+                <img src="{{ url_for('static', filename='images1.png') }}" alt="Profile Picture" class="profile-picture">
+                <h2>{{ user.username }}</h2>
+            </div>
+            <div class="profile-info">
+                <p><strong>Username:</strong> <span id="username-display">{{ user.username }}</span></p>
+                <p><strong>Age:</strong> <span id="age-display">{{ user.age }}</span></p>
+                <p><strong>Salary:</strong> <span id="salary-display">{{ user.salary }}</span></p>
+                <p><strong>Role:</strong> <span id="role-display">{{ user.role }}</span></p>
+                <p><strong>Email:</strong> <span id="email-display">{{ user.email }}</span></p>
+                <button id="edit-button">Edit</button>
+            </div>
+            <form id="edit-form" style="display: none;" method="post" action="{{ url_for('update_user_profile') }}">
+                <div class="profile-info">
+                    <p><strong>Username:</strong> <input type="text" name="username" value="{{ user.username }}"></p>
+                    <p><strong>Age:</strong> <input type="text" name="age" value="{{ user.age }}"></p>
+                    <p><strong>Salary:</strong> <input type="text" name="salary" value="{{ user.salary }}"></p>
+                    <p><strong>Role:</strong> <input type="text" name="role" value="{{ user.role }}"></p>
+                    <p><strong>Email:</strong> <input type="text" name="email" value="{{ user.email }}"></p>
+                    <button type="submit">Save</button>
+                    <button type="button" id="cancel-button">Cancel</button>
+                </div>
+            </form>
+            <div class="profile-footer">
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('edit-button').addEventListener('click', function() {
+    document.querySelector('.profile-info').style.display = 'none';
+    document.getElementById('edit-form').style.display = 'block';
+});
+
+document.getElementById('cancel-button').addEventListener('click', function() {
+    document.querySelector('.profile-info').style.display = 'block';
+    document.getElementById('edit-form').style.display = 'none';
+});
+
+    </script>
+</body>
+</html>
